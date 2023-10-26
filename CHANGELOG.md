@@ -11,5 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initialise repository.
 - Add SuperAGI::Client to connect to SuperAGI API using user credentials.
+- Add SuperAGI::Agent#create to create a new agent.
 - Add spec for Client with a cached response using VCR.
 - Add CircleCI to run the specs on pull requests.
