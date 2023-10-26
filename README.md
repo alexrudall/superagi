@@ -124,7 +124,7 @@ response = client.agent.create(
       tools: []
     })
 puts response
-# => { agent_id: 123 }
+# => {"agent_id"=>15312}
 ```
 
 ## Development
