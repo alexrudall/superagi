@@ -30,16 +30,18 @@ RSpec.describe SuperAGI::HTTP do
     # end
 
     describe ".json_post" do
-      let(:parameters) { {
-        name: "Motivational Quote Generator",
-        description: "Generates motivational quotes",
-        goal: ["I need a motivational quote"],
-        instruction: ["Write a new motivational quote"],
-        iteration_interval: 500,
-        max_iterations: 2,
-        constraints: [],
-        tools: [],
-      } }
+      let(:parameters) do
+        {
+          name: "Motivational Quote Generator",
+          description: "Generates motivational quotes",
+          goal: ["I need a motivational quote"],
+          instruction: ["Write a new motivational quote"],
+          iteration_interval: 500,
+          max_iterations: 2,
+          constraints: [],
+          tools: []
+        }
+      end
       let(:response) { SuperAGI::Client.new.agent.create(parameters: parameters) }
 
       it "times out" do

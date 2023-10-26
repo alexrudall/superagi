@@ -11,7 +11,7 @@ VCR.configure do |c|
   c.cassette_library_dir = "spec/fixtures/cassettes"
   c.default_cassette_options = {
     record: ENV.fetch("SUPERAGI_SECRET_KEY", nil) ? :all : :new_episodes,
-    match_requests_on: [:method, :uri]
+    match_requests_on: %i[method uri]
   }
   c.filter_sensitive_data("<SUPERAGI_SECRET_KEY>") { SuperAGI.configuration.secret_key }
 end

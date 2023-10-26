@@ -21,7 +21,7 @@ module SuperAGI
     end
 
     def agent
-      @agents ||= SuperAGI::Agent.new(client: self)
+      @agent ||= SuperAGI::Agent.new(client: self)
     end
   end
 end
