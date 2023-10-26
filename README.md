@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alexrudall/superagi/blob/main/LICENSE.txt)
 [![CircleCI Build Status](https://circleci.com/gh/alexrudall/superagi.svg?style=shield)](https://circleci.com/gh/alexrudall/superagi)
 
-Use the [SuperAGI API](https://superagi.com/blog/superagi-api/) with Ruby! 🦄❤️
+Use the [SuperAGI API](https://superagi.com/docs/) with Ruby! 🦄❤️
 
 Create and Manage Agents in your Ruby app...
 
@@ -105,6 +105,26 @@ SuperAGI.configure do |config|
       "def": "456",
     } # Optional
 end
+```
+
+### Create Agent
+
+An agent is the primary entity in SuperAGI that carries out tasks. To create one:
+
+```ruby
+response = client.agent.create(
+    parameters: {
+      name: "Motivational Quote Generator",
+      description: "Generates motivational quotes",
+      goal: ["I need a motivational quote"],
+      instruction: ["Write a new motivational quote"],
+      iteration_interval: 500,
+      max_iterations: 2,
+      constraints: [],
+      tools: []
+    })
+puts response
+# => { agent_id: 123 }
 ```
 
 ## Development
