@@ -1,12 +1,10 @@
 module SuperAGI
   class Agent
-
     # '{"loc":["body","constraints"],"msg":"field
     #     required","type":"value_error.missing"},{"loc":["body","tools"],"msg":"field
     #     required","type":"value_error.missing"},{"loc":["body","iteration_interval"],"msg":"field
     #     required","type":"value_error.missing"},{"loc":["body","max_iterations"],"msg":"field
     #     required","type":"value_error.missing"}]}'
-
 
     def initialize(client:)
       @client = client
@@ -39,7 +37,7 @@ module SuperAGI
 
     DEFAULT_PARAMETERS = {
       agent_workflow: "Goal Based Workflow",
-      model: "gpt-4",
+      model: "gpt-4"
     }.freeze
     ARRAY_PARAMETERS = %w[
       constraints
@@ -52,7 +50,7 @@ module SuperAGI
       iteration_interval
       max_iterations
       name
-    ] + ARRAY_PARAMETERS +  DEFAULT_PARAMETERS.keys).freeze
+    ] + ARRAY_PARAMETERS + DEFAULT_PARAMETERS.keys).freeze
 
     def valid_parameters(parameters:)
       parameters = DEFAULT_PARAMETERS.merge(parameters)

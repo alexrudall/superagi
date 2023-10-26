@@ -61,18 +61,20 @@ RSpec.describe SuperAGI::Client do
     end
 
     context "hitting other classes" do
-      let(:parameters) { {
-        agent_workflow: "Goal Based Workflow",
-        constraints: [],
-        description: "Generates motivational quotes",
-        goal: ["I need a motivational quote"],
-        instruction: ["Write a new motivational quote"],
-        iteration_interval: 500,
-        max_iterations: 2,
-        model: "gpt-4",
-        name: "Motivational Quote Generator",
-        tools: [],
-      } }
+      let(:parameters) do
+        {
+          agent_workflow: "Goal Based Workflow",
+          constraints: [],
+          description: "Generates motivational quotes",
+          goal: ["I need a motivational quote"],
+          instruction: ["Write a new motivational quote"],
+          iteration_interval: 500,
+          max_iterations: 2,
+          model: "gpt-4",
+          name: "Motivational Quote Generator",
+          tools: []
+        }
+      end
 
       after do
         c0.agent.create(parameters: parameters)

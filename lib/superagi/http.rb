@@ -48,7 +48,7 @@ module SuperAGI
     def superagi_headers
       {
         "Content-Type" => "application/json",
-        "X-api-key" => @secret_key,
+        "X-api-key" => @secret_key
       }
     end
   end
