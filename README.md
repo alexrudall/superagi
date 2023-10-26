@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alexrudall/superagi/blob/main/LICENSE.txt)
 [![CircleCI Build Status](https://circleci.com/gh/alexrudall/superagi.svg?style=shield)](https://circleci.com/gh/alexrudall/superagi)
 
-Use the [SuperAGI API](https://superagi.com/blog/superagi-api/) with Ruby! 🤖❤️
+Use the [SuperAGI API](https://superagi.com/blog/superagi-api/) with Ruby! 🦄❤️
 
 Create and Manage Agents in your Ruby app...
 
