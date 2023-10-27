@@ -30,7 +30,15 @@ RSpec.describe SuperAGI::Client do
     end
 
     describe "#update" do
-      pending
+      let(:update_parameters) { { name: "Updated Name" } }
+      let(:cassette) { "agent update" }
+      let(:response) { SuperAGI::Client.new.agent.update(id: agent_id, parameters: update_parameters) }
+
+      it "succeeds" do
+        VCR.use_cassette(cassette) do
+          expect(response).to eq("success" => true)
+        end
+      end
     end
 
     describe "#run" do

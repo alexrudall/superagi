@@ -13,6 +13,13 @@ module SuperAGI
       end&.body)
     end
 
+    def json_put(path:, parameters:)
+      to_json(conn.put(uri(path: path)) do |req|
+        req.headers = headers
+        req.body = parameters.to_json
+      end&.body)
+    end
+
     def delete(path:)
       to_json(conn.delete(uri(path: path)) do |req|
         req.headers = headers
