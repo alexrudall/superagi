@@ -27,8 +27,9 @@ module SuperAGI
     # def delete(id:)
     # end
 
-    # def status(id:)
-    # end
+    def status(id:)
+      @client.json_post(path: "/agent/#{id}/run-status", parameters: {})
+    end
 
     # def resources(id:)
     # end
