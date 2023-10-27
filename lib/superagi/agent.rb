@@ -1,11 +1,5 @@
 module SuperAGI
   class Agent
-    # '{"loc":["body","constraints"],"msg":"field
-    #     required","type":"value_error.missing"},{"loc":["body","tools"],"msg":"field
-    #     required","type":"value_error.missing"},{"loc":["body","iteration_interval"],"msg":"field
-    #     required","type":"value_error.missing"},{"loc":["body","max_iterations"],"msg":"field
-    #     required","type":"value_error.missing"}]}'
-
     def initialize(client:)
       @client = client
     end
@@ -26,9 +20,6 @@ module SuperAGI
     # end
 
     # def resume(id:)
-    # end
-
-    # def delete(id:)
     # end
 
     def status(id:)

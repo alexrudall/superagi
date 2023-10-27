@@ -49,9 +49,6 @@ RSpec.describe SuperAGI::Client do
     describe "#resume" do
     end
 
-    describe "#delete" do
-    end
-
     describe "#status" do
       let(:cassette) { "agent status" }
       let(:response) { SuperAGI::Client.new.agent.status(id: agent_id) }
