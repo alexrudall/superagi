@@ -62,5 +62,9 @@ RSpec.describe SuperAGI::Client do
         end
       end
     end
+
+    describe "#resources" do
+      pending
+    end
   end
 end
