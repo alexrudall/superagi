@@ -30,6 +30,7 @@ RSpec.describe SuperAGI::Client do
     end
 
     describe "#update" do
+      pending
     end
 
     describe "#run" do
@@ -44,9 +45,11 @@ RSpec.describe SuperAGI::Client do
     end
 
     describe "#pause" do
+      pending
     end
 
     describe "#resume" do
+      pending
     end
 
     describe "#status" do
