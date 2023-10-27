@@ -12,6 +12,11 @@ RSpec.describe SuperAGI::Client do
         tools: []
       }
     end
+    let(:agent_id) do
+      VCR.use_cassette("#{cassette} setup") do
+        SuperAGI::Client.new.agent.create(parameters: create_parameters)
+      end["agent_id"]
+    end
 
     describe "#create" do
       let(:cassette) { "agent create" }
@@ -24,12 +29,20 @@ RSpec.describe SuperAGI::Client do
       end
     end
 
-    describe "#status" do
-      let(:agent_id) do
-        VCR.use_cassette("#{cassette} setup") do
-          SuperAGI::Client.new.agent.create(parameters: create_parameters)
-        end["agent_id"]
       end
+
+    describe "#run" do
+      let(:cassette) { "agent run" }
+      let(:response) { SuperAGI::Client.new.agent.run(id: agent_id) }
+
+      it "succeeds" do
+        VCR.use_cassette(cassette) do
+          expect(response["run_id"]).to be_an(Integer)
+        end
+      end
+    end
+
+    describe "#status" do
       let(:cassette) { "agent status" }
       let(:response) { SuperAGI::Client.new.agent.status(id: agent_id) }
 

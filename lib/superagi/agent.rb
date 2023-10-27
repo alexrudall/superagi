@@ -18,6 +18,10 @@ module SuperAGI
     # def update(id:, parameters: {})
     # end
 
+    def run(id:)
+      @client.json_post(path: "/agent/#{id}/run", parameters: {})
+    end
+
     # def pause(id:)
     # end
 
