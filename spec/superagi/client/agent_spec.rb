@@ -29,8 +29,6 @@ RSpec.describe SuperAGI::Client do
       end
     end
 
-      end
-
     describe "#run" do
       let(:cassette) { "agent run" }
       let(:response) { SuperAGI::Client.new.agent.run(id: agent_id) }
