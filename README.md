@@ -127,6 +127,16 @@ puts response
 # => {"agent_id"=>15312}
 ```
 
+### Run Agent
+
+To run an agent:
+
+```ruby
+response = client.agent.run(id: 15312)
+puts response
+# => {"run_id"=>29970}
+```
+
 ### Agent Status
 
 To get the status of Agent runs:
