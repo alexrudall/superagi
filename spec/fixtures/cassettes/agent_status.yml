@@ -36,4 +36,40 @@ http_interactions:
       encoding: UTF-8
       string: '[{"run_id":29970,"status":"CREATED"}]'
   recorded_at: Fri, 27 Oct 2023 14:15:23 GMT
+- request:
+    method: post
+    uri: https://app.superagi.com/api/v1/agent/15405/run-status
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - "<SUPERAGI_SECRET_KEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 27 Oct 2023 16:49:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '37'
+      Connection:
+      - keep-alive
+      Server:
+      - uvicorn
+    body:
+      encoding: UTF-8
+      string: '[{"run_id":30013,"status":"CREATED"}]'
+  recorded_at: Fri, 27 Oct 2023 16:49:29 GMT
 recorded_with: VCR 6.1.0
