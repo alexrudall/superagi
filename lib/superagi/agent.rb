@@ -1,11 +1,5 @@
 module SuperAGI
   class Agent
-    # '{"loc":["body","constraints"],"msg":"field
-    #     required","type":"value_error.missing"},{"loc":["body","tools"],"msg":"field
-    #     required","type":"value_error.missing"},{"loc":["body","iteration_interval"],"msg":"field
-    #     required","type":"value_error.missing"},{"loc":["body","max_iterations"],"msg":"field
-    #     required","type":"value_error.missing"}]}'
-
     def initialize(client:)
       @client = client
     end
@@ -15,8 +9,12 @@ module SuperAGI
       @client.json_post(path: "/agent", parameters: parameters)
     end
 
-    # def update(id:, parameters: {})
+    # def update(id:, parameters:)
     # end
+
+    def run(id:)
+      @client.json_post(path: "/agent/#{id}/run", parameters: {})
+    end
 
     # def pause(id:)
     # end
@@ -24,11 +22,9 @@ module SuperAGI
     # def resume(id:)
     # end
 
-    # def delete(id:)
-    # end
-
-    # def status(id:)
-    # end
+    def status(id:)
+      @client.json_post(path: "/agent/#{id}/run-status", parameters: {})
+    end
 
     # def resources(id:)
     # end

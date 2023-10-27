@@ -127,6 +127,26 @@ puts response
 # => {"agent_id"=>15312}
 ```
 
+### Run Agent
+
+To run an agent:
+
+```ruby
+response = client.agent.run(id: 15312)
+puts response
+# => {"run_id"=>29970}
+```
+
+### Agent Status
+
+To get the status of Agent runs:
+
+```ruby
+response = client.agent.status(id: 15312)
+puts response
+# => [{"run_id"=>29970,"status"=>"CREATED"}]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can run `bin/console` for an interactive prompt that will allow you to experiment.
