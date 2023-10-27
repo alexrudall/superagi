@@ -13,7 +13,7 @@ RSpec.describe SuperAGI::Client do
       }
     end
     let(:agent_id) do
-      VCR.use_cassette("#{cassette} setup") do
+      VCR.use_cassette("#{cassette} setup agent") do
         SuperAGI::Client.new.agent.create(parameters: create_parameters)
       end["agent_id"]
     end
@@ -29,6 +29,9 @@ RSpec.describe SuperAGI::Client do
       end
     end
 
+    describe "#update" do
+    end
+
     describe "#run" do
       let(:cassette) { "agent run" }
       let(:response) { SuperAGI::Client.new.agent.run(id: agent_id) }
@@ -38,6 +41,15 @@ RSpec.describe SuperAGI::Client do
           expect(response["run_id"]).to be_an(Integer)
         end
       end
+    end
+
+    describe "#pause" do
+    end
+
+    describe "#resume" do
+    end
+
+    describe "#delete" do
     end
 
     describe "#status" do
