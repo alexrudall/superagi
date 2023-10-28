@@ -36,7 +36,7 @@ RSpec.describe SuperAGI::Client do
 
       it "succeeds" do
         VCR.use_cassette(cassette) do
-          expect(response).to eq("success" => true)
+          expect(response["agent_id"]).to be_a(Integer)
         end
       end
     end

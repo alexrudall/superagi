@@ -10,6 +10,7 @@ module SuperAGI
     end
 
     def update(id:, parameters:)
+      parameters = DEFAULT_UPDATE_PARAMETERS.merge(parameters)
       @client.json_put(path: "/agent/#{id}", parameters: parameters)
     end
 
@@ -32,6 +33,11 @@ module SuperAGI
 
     private
 
+    DEFAULT_UPDATE_PARAMETERS = {
+      constraints: [],
+      goal: [],
+      tools: [],
+    }
     DEFAULT_PARAMETERS = {
       agent_workflow: "Goal Based Workflow",
       model: "gpt-4"

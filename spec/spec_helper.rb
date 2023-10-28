@@ -29,8 +29,8 @@ RSpec.configure do |c|
 
   if ENV.fetch("SUPERAGI_SECRET_KEY", nil)
     warning = "WARNING! Specs are hitting the SuperAGI API using your SUPERAGI_SECRET_KEY! This
-costs at least 2 cents per run and is very slow! If you don't want this, unset
-SUPERAGI_SECRET_KEY to just run against the stored VCR responses.".freeze
+    is very slow! If you don't want this, unset SUPERAGI_SECRET_KEY to just run against the
+    stored VCR responses.".freeze
     warning = RSpec::Core::Formatters::ConsoleCodes.wrap(warning, :bold_red)
 
     c.before(:suite) { RSpec.configuration.reporter.message(warning) }

@@ -77,18 +77,15 @@ client = SuperAGI::Client.new(secret_key: "secret_key_goes_here")
 
 #### Custom timeout or base URI
 
-The default timeout for any request using this library is 120 seconds. You can change that by passing a number of seconds to the `request_timeout` when initializing the client. You can also change the base URI used for all requests.
+The default timeout for any request using this library is 120 seconds. You can change that by passing a number of seconds to the `request_timeout` when initializing the client. You can also change the base URI used for all requests, eg. if you're running SuperAGI locally with the default `docker-compose` setup you can use `http://superagi-backend-1:8001/`.
 
 ```ruby
 client = SuperAGI::Client.new(
     secret_key: "secret_key_goes_here",
-    uri_base: "https://app.alternativeapi.com/",
+    uri_base: "http://superagi-backend-1:8001/",
     request_timeout: 240,
     extra_headers: {
-      "X-Proxy-TTL" => "43200", # For https://github.com/6/superagi-caching-proxy-worker#specifying-a-cache-ttl
-      "X-Proxy-Refresh": "true", # For https://github.com/6/superagi-caching-proxy-worker#refreshing-the-cache
-      "Helicone-Auth": "Bearer HELICONE_API_KEY", # For https://docs.helicone.ai/getting-started/integration-method/superagi-proxy
-      "helicone-stream-force-format" => "true", # Use this with Helicone otherwise streaming drops chunks # https://github.com/alexrudall/superagi/issues/251
+      "Extra-Header" => "43200",
     }
 )
 ```
