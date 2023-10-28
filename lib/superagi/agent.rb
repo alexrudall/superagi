@@ -33,12 +33,7 @@ module SuperAGI
 
     private
 
-    DEFAULT_UPDATE_PARAMETERS = {
-      constraints: [],
-      goal: [],
-      tools: [],
-    }
-    DEFAULT_PARAMETERS = {
+    DEFAULT_CREATE_PARAMETERS = {
       agent_workflow: "Goal Based Workflow",
       model: "gpt-4"
     }.freeze
@@ -47,23 +42,31 @@ module SuperAGI
       goal
       tools
     ].freeze
-    REQUIRED_PARAMETERS = (%w[
+    REQUIRED_CREATE_PARAMETERS = (%w[
       description
       instruction
       iteration_interval
       max_iterations
       name
-    ] + ARRAY_PARAMETERS + DEFAULT_PARAMETERS.keys).freeze
+    ] + ARRAY_PARAMETERS + DEFAULT_CREATE_PARAMETERS.keys).freeze
+
+    # Update parameters need to always include any List types, even if they are empty,
+    # otherwise the API will return a NoneType error.
+    DEFAULT_UPDATE_PARAMETERS = {
+      constraints: [],
+      goal: [],
+      tools: [],
+    }
 
     def valid_parameters(parameters:)
-      parameters = DEFAULT_PARAMETERS.merge(parameters)
+      parameters = DEFAULT_CREATE_PARAMETERS.merge(parameters)
       validate_presence(parameters: parameters)
       validate_arrays(parameters: parameters)
       parameters
     end
 
     def validate_presence(parameters:)
-      REQUIRED_PARAMETERS.each do |key|
+      REQUIRED_CREATE_PARAMETERS.each do |key|
         raise ArgumentError, "#{key} is required" unless parameters[key.to_sym]
       end
     end
