@@ -124,6 +124,20 @@ puts response
 # => {"agent_id"=>15312}
 ```
 
+### Update Agent
+
+To update an agent, pass the ID and 1 or more of the parameters you want to update:
+
+```ruby
+response = client.agent.update(
+    id: 15312,
+    parameters: {
+      name: "Updated name",
+    })
+puts response
+# => {"agent_id"=>15312}
+```
+
 ### Run Agent
 
 To run an agent:
