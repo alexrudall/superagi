@@ -5,7 +5,7 @@ module SuperAGI
     end
 
     def create(parameters:)
-      parameters = valid_parameters(parameters: parameters)
+      parameters = valid_parameters(method: :create, parameters: parameters)
       @client.json_post(path: "/agent", parameters: parameters)
     end
 
@@ -33,15 +33,16 @@ module SuperAGI
 
     private
 
-    DEFAULT_CREATE_PARAMETERS = {
-      agent_workflow: "Goal Based Workflow",
-      model: "gpt-4"
-    }.freeze
     ARRAY_PARAMETERS = %w[
       constraints
       goal
       tools
     ].freeze
+
+    DEFAULT_CREATE_PARAMETERS = {
+      agent_workflow: "Goal Based Workflow",
+      model: "gpt-4"
+    }.freeze
     REQUIRED_CREATE_PARAMETERS = (%w[
       description
       instruction
@@ -57,16 +58,28 @@ module SuperAGI
       goal: [],
       tools: []
     }.freeze
+    REQUIRED_UPDATE_PARAMETERS = DEFAULT_UPDATE_PARAMETERS.keys.freeze
 
-    def valid_parameters(parameters:)
-      parameters = DEFAULT_CREATE_PARAMETERS.merge(parameters)
-      validate_presence(parameters: parameters)
+    def valid_parameters(method:, parameters:)
+      parameters = default_parameters(method: method, parameters: parameters)
+      validate_presence(method: method, parameters: parameters)
       validate_arrays(parameters: parameters)
       parameters
     end
 
-    def validate_presence(parameters:)
-      REQUIRED_CREATE_PARAMETERS.each do |key|
+    def default_parameters(method:, parameters:)
+      case method
+      when :create then DEFAULT_CREATE_PARAMETERS.merge(parameters)
+      when :update then DEFAULT_UPDATE_PARAMETERS.merge(parameters)
+      end
+    end
+
+    def validate_presence(method:, parameters:)
+      required_parameters = case method
+                            when :create then REQUIRED_CREATE_PARAMETERS
+                            when :update then REQUIRED_UPDATE_PARAMETERS
+                            end
+      required_parameters.each do |key|
         raise ArgumentError, "#{key} is required" unless parameters[key.to_sym]
       end
     end
