@@ -1,6 +1,6 @@
 RSpec.describe SuperAGI::Client do
   describe "#agent", :vcr do
-    let(:create_parameters) do
+    let(:create_params) do
       {
         name: "Motivational Quote Generator",
         description: "Generates motivational quotes",
@@ -14,13 +14,13 @@ RSpec.describe SuperAGI::Client do
     end
     let(:agent_id) do
       VCR.use_cassette("#{cassette} setup agent") do
-        SuperAGI::Client.new.agent.create(parameters: create_parameters)
+        SuperAGI::Client.new.agent.create(parameters: create_params)
       end["agent_id"]
     end
 
     describe "#create" do
       let(:cassette) { "agent create" }
-      let(:response) { SuperAGI::Client.new.agent.create(parameters: create_parameters) }
+      let(:response) { SuperAGI::Client.new.agent.create(parameters: create_params) }
 
       it "succeeds" do
         VCR.use_cassette(cassette) do
@@ -30,9 +30,9 @@ RSpec.describe SuperAGI::Client do
     end
 
     describe "#update" do
-      let(:update_parameters) { { name: "Updated Name" } }
+      let(:update_params) { { name: "Updated Name" } }
       let(:cassette) { "agent update" }
-      let(:response) { SuperAGI::Client.new.agent.update(id: agent_id, parameters: update_parameters) }
+      let(:response) { SuperAGI::Client.new.agent.update(id: agent_id, parameters: update_params) }
 
       it "succeeds" do
         VCR.use_cassette(cassette) do

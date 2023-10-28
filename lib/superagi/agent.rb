@@ -55,8 +55,8 @@ module SuperAGI
     DEFAULT_UPDATE_PARAMETERS = {
       constraints: [],
       goal: [],
-      tools: [],
-    }
+      tools: []
+    }.freeze
 
     def valid_parameters(parameters:)
       parameters = DEFAULT_CREATE_PARAMETERS.merge(parameters)
