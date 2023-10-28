@@ -95,7 +95,7 @@ or when configuring the gem:
 ```ruby
 SuperAGI.configure do |config|
     config.secret_key = ENV.fetch("SUPERAGI_SECRET_KEY")
-    config.uri_base = "https://app.alternativeapi.com/" # Optional
+    config.uri_base = "http://superagi-backend-1:8001/" # Optional
     config.request_timeout = 240 # Optional
     config.extra_headers = {
       "abc" => "123",
