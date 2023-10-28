@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://app.superagi.com/api/v1/agent/
+    body:
+      encoding: UTF-8
+      string: '{"constraints":[],"goal":[],"tools":[],"name":"Updated Name"}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - "<SUPERAGI_SECRET_KEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 307
+      message: Temporary Redirect
+    headers:
+      Date:
+      - Sat, 28 Oct 2023 16:24:09 GMT
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Server:
+      - uvicorn
+      Location:
+      - http://app.superagi.com/api/v1/agent
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Sat, 28 Oct 2023 16:24:09 GMT
+- request:
+    method: put
+    uri: https://app.superagi.com/api/v1/agent/15440
+    body:
+      encoding: UTF-8
+      string: '{"constraints":[],"goal":[],"tools":[],"name":"Updated Name"}'
+    headers:
+      Content-Type:
+      - application/json
+      X-Api-Key:
+      - "<SUPERAGI_SECRET_KEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 28 Oct 2023 16:25:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '18'
+      Connection:
+      - keep-alive
+      Server:
+      - uvicorn
+    body:
+      encoding: UTF-8
+      string: '{"agent_id":15440}'
+  recorded_at: Sat, 28 Oct 2023 16:25:28 GMT
+recorded_with: VCR 6.1.0
