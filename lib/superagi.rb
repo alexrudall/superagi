@@ -3,6 +3,7 @@ require "faraday/multipart"
 
 require_relative "superagi/http"
 require_relative "superagi/client"
+require_relative "superagi/agent_validation"
 require_relative "superagi/agent"
 
 module SuperAGI
