@@ -159,6 +159,18 @@ puts response
 # => {"result"=>"success"}
 ```
 
+### Resume Agent
+
+To resume an agent:
+
+```ruby
+client.agent.run(id: 15312)
+client.agent.pause(id: 15312)
+response = client.agent.resume(id: 15312)
+puts response
+# => {"result"=>"success"}
+```
+
 ### Agent Status
 
 To get the status of Agent runs:

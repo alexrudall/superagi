@@ -22,9 +22,9 @@ module SuperAGI
       @client.json_post(path: "/agent/#{id}/pause", parameters: {})
     end
 
-    # def resume(id:)
-      # @client.json_post(path: "/agent/#{id}/resume", parameters: {})
-    # end
+    def resume(id:)
+      @client.json_post(path: "/agent/#{id}/resume", parameters: {})
+    end
 
     def status(id:)
       @client.json_post(path: "/agent/#{id}/run-status", parameters: {})
