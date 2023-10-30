@@ -53,7 +53,14 @@ RSpec.describe SuperAGI::Client do
     end
 
     describe "#pause" do
-      pending
+      let(:cassette) { "agent pause" }
+      let(:response) { SuperAGI::Client.new.agent.pause(id: agent_id) }
+
+      it "succeeds" do
+        VCR.use_cassette(cassette) do
+          expect(response["result"]).to eq("success")
+        end
+      end
     end
 
     describe "#resume" do

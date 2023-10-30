@@ -18,10 +18,12 @@ module SuperAGI
       @client.json_post(path: "/agent/#{id}/run", parameters: {})
     end
 
-    # def pause(id:)
-    # end
+    def pause(id:)
+      @client.json_post(path: "/agent/#{id}/pause", parameters: {})
+    end
 
     # def resume(id:)
+      # @client.json_post(path: "/agent/#{id}/resume", parameters: {})
     # end
 
     def status(id:)
@@ -29,6 +31,7 @@ module SuperAGI
     end
 
     # def resources(id:)
+      # @client.json_post(path: "/agent/resources/output", parameters: {})
     # end
 
     private
