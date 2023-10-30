@@ -23,6 +23,11 @@ RSpec.describe SuperAGI::Client do
       end
       agent_id
     end
+    let(:run_id) do
+      VCR.use_cassette("#{cassette} setup run") do
+        SuperAGI::Client.new.agent.run(id: agent_id)
+      end["run_id"]
+    end
 
     describe "#create" do
       let(:cassette) { "agent create" }
@@ -92,7 +97,14 @@ RSpec.describe SuperAGI::Client do
     end
 
     describe "#resources" do
-      pending
+      let(:cassette) { "agent resources" }
+      let(:response) { SuperAGI::Client.new.agent.resources(parameters: { run_ids: [run_id] }) }
+
+      it "succeeds" do
+        VCR.use_cassette(cassette) do
+          expect(response).to be_a(Hash)
+        end
+      end
     end
   end
 end

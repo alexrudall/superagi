@@ -30,13 +30,14 @@ module SuperAGI
       @client.json_post(path: "/agent/#{id}/run-status", parameters: {})
     end
 
-    # def resources(id:)
-      # @client.json_post(path: "/agent/resources/output", parameters: {})
-    # end
+    def resources(parameters:)
+      parameters = valid_parameters(method: :resources, parameters: parameters)
+      @client.json_post(path: "/agent/resources/output", parameters: parameters)
+    end
 
     private
 
-    ARRAY_PARAMETERS = %w[
+    ARRAY_CREATE_PARAMETERS = %w[
       constraints
       goal
       tools
@@ -52,7 +53,7 @@ module SuperAGI
       iteration_interval
       max_iterations
       name
-    ] + ARRAY_PARAMETERS + DEFAULT_CREATE_PARAMETERS.keys).freeze
+    ] + ARRAY_CREATE_PARAMETERS + DEFAULT_CREATE_PARAMETERS.keys).freeze
 
     # Update parameters need to always include any List types, even if they are empty,
     # otherwise the API will return a NoneType error.
@@ -63,10 +64,12 @@ module SuperAGI
     }.freeze
     REQUIRED_UPDATE_PARAMETERS = DEFAULT_UPDATE_PARAMETERS.keys.freeze
 
+    REQUIRED_RESOURCES_PARAMETERS = %w[run_ids].freeze
+
     def valid_parameters(method:, parameters:)
       parameters = default_parameters(method: method, parameters: parameters)
       validate_presence(method: method, parameters: parameters)
-      validate_arrays(parameters: parameters)
+      validate_arrays(method: method, parameters: parameters)
       parameters
     end
 
@@ -74,6 +77,7 @@ module SuperAGI
       case method
       when :create then DEFAULT_CREATE_PARAMETERS.merge(parameters)
       when :update then DEFAULT_UPDATE_PARAMETERS.merge(parameters)
+      else parameters
       end
     end
 
@@ -81,14 +85,19 @@ module SuperAGI
       required_parameters = case method
                             when :create then REQUIRED_CREATE_PARAMETERS
                             when :update then REQUIRED_UPDATE_PARAMETERS
+                            when :resources then REQUIRED_RESOURCES_PARAMETERS
                             end
       required_parameters.each do |key|
         raise ArgumentError, "#{key} is required" unless parameters[key.to_sym]
       end
     end
 
-    def validate_arrays(parameters:)
-      ARRAY_PARAMETERS.each do |key|
+    def validate_arrays(method:, parameters:)
+      array_parameters = case method
+                         when :create, :update then ARRAY_CREATE_PARAMETERS
+                         when :resources then REQUIRED_RESOURCES_PARAMETERS
+                         end
+      array_parameters.each do |key|
         raise ArgumentError, "#{key} must be an array" unless parameters[key.to_sym].is_a?(Array)
       end
     end
