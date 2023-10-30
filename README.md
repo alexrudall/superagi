@@ -181,6 +181,17 @@ puts response
 # => [{"run_id"=>29970,"status"=>"CREATED"}]
 ```
 
+### Agent Resources
+
+To get the resources output by Agent runs:
+
+```ruby
+  run_id = client.agent.run(id: 15312)["run_id"]
+  response = client.agent.resources(parameters: { run_ids: [run_id] })
+  puts response
+  # => {}
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can run `bin/console` for an interactive prompt that will allow you to experiment.
