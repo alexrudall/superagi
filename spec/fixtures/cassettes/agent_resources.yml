@@ -5,7 +5,7 @@ http_interactions:
     uri: https://app.superagi.com/api/v1/agent/resources/output
     body:
       encoding: UTF-8
-      string: '{"run_ids":[30495]}'
+      string: '{"run_ids":[30511]}'
     headers:
       Content-Type:
       - application/json
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 30 Oct 2023 16:31:16 GMT
+      - Mon, 30 Oct 2023 16:33:10 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -35,5 +35,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "{}"
-  recorded_at: Mon, 30 Oct 2023 16:31:17 GMT
+  recorded_at: Mon, 30 Oct 2023 16:33:10 GMT
 recorded_with: VCR 6.1.0
